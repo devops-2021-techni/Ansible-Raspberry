@@ -1,0 +1,19 @@
+---
+- name: Pre-configuration
+  hosts: all
+  roles:
+    - change_hostname
+    - packages
+    - alias_ssh
+    - docker
+
+- name: Setting up leader
+  hosts: rp1
+  roles:
+    - install_compose
+    - swarm_init
+
+- name: Adding workers
+  hosts: workers
+  roles:
+    - swarm_add_worker

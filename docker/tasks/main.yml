@@ -7,9 +7,9 @@
   become: true
   command: sh get-docker.sh
 
-- name: Add pi in the docker group
+- name: Add "{{ansible_user}}" in the docker group
   become: true
   user:
-    name: pi
+    name: "{{ansible_user}}"
     groups: docker
     append: true

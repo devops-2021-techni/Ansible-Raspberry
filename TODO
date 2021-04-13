@@ -1,25 +1,3 @@
 ssh-copy-id
-
-raspi-config
-
-/etc/network/interfaces.d/eth0
-auto eth0
-
-/etc/dhcpcd.conf
-"#interface eth0" -> "interface eth0" 
-"#static ip_address=192.168.0" -> "static ip_address=192.168.1.XX"
-
-
-wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
-sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
-
-
-try disable static in conf file to see if only one ipv6
- -> advertise-addr eth0
-    -> netstat -ln -4 -6 only show ipv4 listen
-https://www.ipfingerprints.com/portscan.php
-
-
-docker container run --name portainer -d -v -p 9000:9000 "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
-
-
+create user Yberamos (docker, sudo)
+change pass pi
