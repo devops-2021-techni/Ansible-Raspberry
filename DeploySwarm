@@ -1,19 +1,34 @@
 ---
 - name: Pre-configuration
   hosts: all
+  become: true
+  become_user: pi
   roles:
     - change_hostname
     - packages
-    - alias_ssh
     - docker
+
+- name: Seeting up user
+  hosts: all
+  become: true
+  become_user: pi
+  roles:
+    - create_user
+    - change_password
+    - alias_ssh
+    - copy_ssh_keys
+  vars:
+    newpassword: 123456a.
 
 - name: Setting up leader
   hosts: manager
+  become_user: yberamos
   roles:
     - install_compose
     - swarm_init
 
 - name: Adding workers
   hosts: workers
+  become_user: yberamos
   roles:
     - swarm_add_worker
