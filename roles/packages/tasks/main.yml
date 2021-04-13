@@ -21,3 +21,4 @@
       - gnupg2
       - curl
       - man
+      - python3-pip

@@ -1,7 +1,9 @@
 ---
 - name: Auto eth0
+  become: true
   blockinfile:
     path: /etc/network/interfaces.d/eth0
+    create: true
     block: |
       auto eth0
       iface eth0 inet static

@@ -3,7 +3,7 @@
   user:
     name: yberamos
     shell: /bin/bash
-    groups: sudo
+    groups: sudo, docker
     append: yes    
     update_password: always
     password: "{{ newpassword|password_hash('sha512') }}"

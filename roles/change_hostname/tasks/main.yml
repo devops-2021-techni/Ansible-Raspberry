@@ -1,0 +1,15 @@
+---
+- name: debug
+  debug:
+    var: inventory_hostname_short
+- name: Change the hostname
+  become: true
+  hostname:
+    name: "{{ inventory_hostname_short }}"
+
+- name: Modify /etc/hosts
+  become: true
+  lineinfile:
+    path: /etc/hosts
+    regexp: "127.0.0.1"
+    line: "127.0.0.1\t{{ inventory_hostname_short }}"

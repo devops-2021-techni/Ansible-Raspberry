@@ -1,0 +1,10 @@
+---
+- name: add alias
+  become: true
+  blockinfile:
+    path: /home/{{ansible_user}}/.bashrc
+    block: |
+      alias rp1='ssh {{ansible_user}}@192.168.1.44'
+      alias rp2='ssh {{ansible_user}}@192.168.1.45'
+      alias rp3='ssh {{ansible_user}}@192.168.1.46'
+      alias rp4='ssh {{ansible_user}}@192.168.1.47'

@@ -1,9 +1,0 @@
----
-- hosts: workers
-  remote_user: pi
-  become: true
-
-  tasks:
-    - name: Joining the swarm
-      become: true
-      command: "docker swarm join --token SWMTKN-1-1qhbqhto5vwvlrd2si8lxnsbwqtv5uwtmz2rc64jm3b47s7gcy-dqe821ublg8obdnbu77vpfil4 192.168.1.44:2377 "
