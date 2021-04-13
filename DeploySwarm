@@ -8,7 +8,7 @@
     - docker
 
 - name: Setting up leader
-  hosts: rp1
+  hosts: manager
   roles:
     - install_compose
     - swarm_init
