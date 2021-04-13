@@ -1,0 +1,9 @@
+ssh-keygen -f "/home/yberamos/.ssh/known_hosts" -R 192.168.1.44
+ssh-keygen -f "/home/yberamos/.ssh/known_hosts" -R 192.168.1.45
+ssh-keygen -f "/home/yberamos/.ssh/known_hosts" -R 192.168.1.46
+ssh-keygen -f "/home/yberamos/.ssh/known_hosts" -R 192.168.1.47
+
+ssh-copy-id pi@192.168.1.44
+ssh-copy-id pi@192.168.1.45
+ssh-copy-id pi@192.168.1.46
+ssh-copy-id pi@192.168.1.47

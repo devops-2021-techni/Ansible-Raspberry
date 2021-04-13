@@ -1,0 +1,8 @@
+---
+- hosts: rp1
+  become: true
+  remote_user: pi
+
+  roles:
+    - compose
+    - reboot

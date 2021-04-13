@@ -1,0 +1,63 @@
+version: '2'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: always
+    ports:
+      - 9090:9090
+
+  grafana:
+    image: grafana/grafana:latest
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana:/var/lib/grafana
+  # Tests the current internet connection speed
+  # once per hour and writes the results into an
+  # InfluxDB instance
+  speedtest:
+    image: robinmanuelthiel/speedtest:0.1.1
+    container_name: speedtest
+    restart: always
+    depends_on:
+      - pg
+    environment:
+      - LOOP=true
+      - LOOP_DELAY=3600 # Once per hour
+      - DB_SAVE=true
+      - DB_HOST=http://postgresql:8080
+      - DB_NAME=speedtest
+      - DB_USERNAME=admin
+      - DB_PASSWORD=123456a.
+
+  # Creates an InfluxDB instance to store the
+  # speed test results
+  pg:
+    image: postgres
+    restart: always
+    container_name: postgresql
+    ports:
+      - 8080:8080
+    environment:
+      POSTGRES_PASSWORD: 123456a.
+      POSTGRES_USER: admin
+      POSTGRES_DB: speedtest
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+  
+  noip:
+    image: coppit/no-ip
+    container_name: noip
+    restart: always
+    environment:
+      - USERNAME=gregoiredemoulin2@gmail.com
+      - PASSWORD=EpR%$kg3q2
+      - DOMAINS=yberamoss.ddns.net
+      - INTERVAL=3
+
+volumes:
+  grafana:
+  pgdata:

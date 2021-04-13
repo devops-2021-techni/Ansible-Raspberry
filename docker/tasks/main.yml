@@ -1,0 +1,15 @@
+---
+- name: download install script
+  become: true
+  command: curl -fsSL https://get.docker.com -o get-docker.sh
+
+- name: execute install script
+  become: true
+  command: sh get-docker.sh
+
+- name: Add pi in the docker group
+  become: true
+  user:
+    name: pi
+    groups: docker
+    append: true

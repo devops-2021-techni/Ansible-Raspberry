@@ -1,0 +1,30 @@
+version: '3'
+services:
+    drupal:
+        image: drupal:9.1.5
+        container_name: drupal1
+        ports:
+            - 8080:80
+        volumes:
+            - drupal-modules:/var/www/html/modules
+            - drupal-modules:/var/www/html/profiles
+            - drupal-modules:/var/www/html/sites
+            - drupal-modules:/var/www/html/themes
+        restart: always
+        network:
+            - internal 
+
+    postgres:
+        image: postgres:10
+        environment:
+            POSTGRES_PASSWORD: example
+        restart: always
+
+
+networks:
+  internal:
+    name: internal1
+    driver: bridge    
+
+volumes:
+    drupal-modules:

@@ -1,0 +1,24 @@
+---
+- name: Auto eth0
+  blockinfile:
+    path: /etc/network/interfaces.d/eth0
+    block: |
+      auto eth0
+      iface eth0 inet static
+
+- name: back-up /etc/dhcpcd.conf
+  become: true
+  copy:
+    src: /etc/dhcpcd.conf
+    dest: /etc/dhcpcd.conf.original
+    remote_src: true
+
+- name: Setting the static ip
+  become: true
+  blockinfile:
+    path: /etc/dhcpcd.conf
+    block: |
+      interface eth0
+      static ip_address={{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}/24
+      static routers=192.168.1.1
+      static domain_name_servers=192.168.0.1 8.8.8.8
