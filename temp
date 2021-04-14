@@ -1,19 +1,7 @@
 
-- name: Setting up leader
-  hosts: manager
-  remote_user: yberamos
-  roles:
-    - swarm_init
-
-- name: Adding workers
+- name: Setting up exporter
   hosts: workers
   remote_user: yberamos
-  roles:
-    - swarm_add_worker
-
-- name: Rebooting all hosts
-  hosts: raspberries
   become: true
-  remote_user: yberamos
   roles:
-    - reboot
+    - Node_exporter

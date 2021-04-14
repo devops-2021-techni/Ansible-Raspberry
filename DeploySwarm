@@ -42,6 +42,13 @@
   roles:
     - swarm_add_worker
 
+- name: Setting up exporters
+  hosts: workers
+  remote_user: yberamos
+  become: true
+  roles:
+    - Node_exporter
+
 - name: Rebooting all hosts
   hosts: raspberries
   become: true
