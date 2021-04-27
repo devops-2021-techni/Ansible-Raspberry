@@ -1,7 +1,0 @@
-
-- name: Setting up exporter
-  hosts: workers
-  remote_user: yberamos
-  become: true
-  roles:
-    - Node_exporter

@@ -9,42 +9,22 @@
     - packages
     - docker
 
-- name: Create user
-  hosts: raspberries
-  become: true
-  remote_user: pi
-  roles:
-    - create_user
-    - change_password
-  vars:
-    newpassword: 123456a.
-
-- name: Setting up user
-  hosts: raspberries
-  become: true
-  remote_user: yberamos
-  roles:
-    - alias_ssh
-    - copy_ssh_keys
-  vars:
-    newpassword: 123456a.
-
 - name: Setting up leader
   hosts: manager
-  remote_user: yberamos
+  remote_user: pi
   roles:
     - install_compose
     - swarm_init
 
 - name: Adding workers
   hosts: workers
-  remote_user: yberamos
+  remote_user: pi
   roles:
     - swarm_add_worker
 
 - name: Setting up exporters
   hosts: workers
-  remote_user: yberamos
+  remote_user: pi
   become: true
   roles:
     - Node_exporter
@@ -52,6 +32,6 @@
 - name: Rebooting all hosts
   hosts: raspberries
   become: true
-  remote_user: yberamos
+  remote_user: pi
   roles:
     - reboot
