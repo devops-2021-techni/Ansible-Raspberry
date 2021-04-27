@@ -9,7 +9,6 @@
     - packages
     - docker
     - swap
-    - iptable
     - hosts
 
 - name: Rebooting all hosts
