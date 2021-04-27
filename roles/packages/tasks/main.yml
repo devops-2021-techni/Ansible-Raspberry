@@ -13,4 +13,4 @@
     force_apt_get: true
   vars:
     packagesdep:
-      - snap
+      - iptables-persistent

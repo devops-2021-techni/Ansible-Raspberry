@@ -1,0 +1,23 @@
+- name: get-token
+  become: true
+  command: sudo microk8s.add-node 
+  register: join_cmd
+
+- name: debug
+  debug:
+    var: join_cmd.stdout_lines[1]
+
+- name: joining cluster worker1
+  become: true
+  command: "{{ join_cmd.stdout_lines[1] }}"
+  delegate_to: pi-worker1
+
+- name: get-token
+  become: true
+  command: sudo microk8s.add-node 
+  register: join_cmd
+
+- name: joining cluster worker2
+  become: true
+  command: "{{ join_cmd.stdout_lines[1] }}"
+  delegate_to: pi-worker2

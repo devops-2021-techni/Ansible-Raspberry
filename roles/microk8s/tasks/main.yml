@@ -1,7 +1,20 @@
 ---
 - name: Install microk8s
   become: true
-  lineinfile:
-    path: /etc/hosts
-    regexp: "127.0.0.1"
-    line: "127.0.0.1\t{{ inventory_hostname_short }}"
+  snap:
+    name: microk8s
+    classic: true
+
+- name: join group
+  become: true
+  user:
+    name: "{{ansible_user}}"
+    groups: microk8s
+    append: true
+
+- name: change ownership of /home/{{ansible_user}}/.kube
+  file:
+    path: ~/.kube
+    owner: "{{ansible_user}}"
+    state: directory
+    recurse: true

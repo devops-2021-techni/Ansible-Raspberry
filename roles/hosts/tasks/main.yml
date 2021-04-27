@@ -1,0 +1,10 @@
+---
+- name: add hosts
+  become: true
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      192.168.1.44 pi-master
+      192.168.1.45 pi-worker1
+      192.168.1.46 pi-worker2
+      192.168.1.47 pi-jenkins

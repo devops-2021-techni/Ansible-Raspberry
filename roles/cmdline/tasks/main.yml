@@ -1,0 +1,7 @@
+---
+- name: modify cmdline.txt file
+  become: true
+  lineinfile:
+    path: /boot/firmware/cmdline.txt
+    regexp: 'net.ifnames=0 dwc_otg.lpm_enable=0'
+    line: 'cgroup_enable=memory cgroup_memory=1 net.ifnames=0 dwc_otg.lpm_enable=0 console=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait'

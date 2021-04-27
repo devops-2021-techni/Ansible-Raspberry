@@ -1,0 +1,8 @@
+---
+- name: Accepting forward
+  become: true
+  command: iptables -P FORWARD ACCEPT
+
+#- name: make the iptable persitent
+#  become: true
+#  command: iptables-save > /etc/iptables/rules.v4

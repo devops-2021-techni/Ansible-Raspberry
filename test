@@ -1,0 +1,7 @@
+---
+- name:  start cluster
+  hosts: manager
+  become: true
+  remote_user: pi
+  roles:
+    - cluster_init

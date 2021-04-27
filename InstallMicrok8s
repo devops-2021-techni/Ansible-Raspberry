@@ -1,0 +1,41 @@
+---
+- name: Pre-configuration
+  hosts: kubernetes
+  become: true
+  remote_user: pi
+  roles:
+    - change_hostname
+    - cmdline
+    - packages
+    - docker
+    - swap
+    - iptable
+    - hosts
+
+- name: Rebooting all hosts
+  hosts: kubernetes
+  become: true
+  remote_user: pi
+  roles:
+    - reboot
+
+- name: installation microk8s
+  hosts: kubernetes
+  become: true
+  remote_user: pi
+  roles:
+    - microk8s
+
+- name: Rebooting all hosts
+  hosts: kubernetes
+  become: true
+  remote_user: pi
+  roles:
+    - reboot
+
+- name: forwarding port
+  hosts: manager
+  become: true
+  remote_user: pi
+  roles:
+    - iptable

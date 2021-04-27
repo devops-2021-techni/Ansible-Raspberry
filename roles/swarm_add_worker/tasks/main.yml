@@ -1,3 +1,0 @@
----
-- name: Add Workers to the Swarm
-  command: "docker swarm join --token {{ hostvars['rp1']['worker_token']['stdout'] }} {{ hostvars['rp1']['ansible_default_ipv4']['address'] }}:2377"
