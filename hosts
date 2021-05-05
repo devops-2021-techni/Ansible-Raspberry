@@ -1,0 +1,22 @@
+#/etc/ansible/hosts
+
+[raspberries]
+pi-master ansible_host=192.168.1.44
+pi-worker1 ansible_host=192.168.1.45
+pi-worker2 ansible_host=192.168.1.46
+pi-jenkins ansible_host=192.168.1.47
+
+[raspberries:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[workers]
+pi-worker1
+pi-worker2
+
+
+[manager]
+pi-master
+
+[kubernetes:children]
+manager
+workers
