@@ -1,5 +1,4 @@
 # **TFF DevOps (Kubernetes)**  
-
 ---
 ---
 
@@ -42,7 +41,7 @@ sudo visudo
 ```sh
 exit
 ```
-
+---
 ##### **=> Sur la machine physique <=**  
 1) Permettre a Ansible de se connecter sans utiliser le mot de passe :  
 ```sh
